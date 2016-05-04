@@ -1,0 +1,29 @@
+function [obj] = plot_GMM(Data,num_clusters,ids)
+
+[num q] = size(Data)
+tot = q*(q-1)/2;
+xx = 1;
+options = statset('Display','iter','MaxIter',1000);
+
+colors = [ [0 0 0] ; [0.8 0 0] ; [0 0.8 0] ; [0 0 0.8] ; 
+					 [0.8 0.8 0] ; [0.8 0 0.8] ; [0 0.8 0.8] ; [0.4 0.4 0.4] ];
+mcolor=[];
+obj=gmdistribution.fit(Data,num_clusters,'Options',options,'Replicates',50);
+for j=1:q
+    for k=j+1:q
+				[j k]
+        %subplot(tot, 1, xx);
+        xx = xx+1;		
+        figure
+        
+				for i=1:num
+					mcolor(i,:) = colors(3,:);
+                    plot(Data(i,j), Data(i,k), 'x', 'markerSize',4,'color',mcolor(i,:));
+                    hold on;
+                end
+
+        plotGMM([obj.mu(:,j) obj.mu(:,k)]', obj.Sigma([j,k],[j,k],:), [0 0.2 0], 1);
+        
+        xlabel(ids(j),'fontsize',16); ylabel(ids(k),'fontsize',16);
+    end
+end

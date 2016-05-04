@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/interaction/svn/!svn/ver/1046/trunk/ros-pkg/sandbox/oit_models/srv
+END
+LookupProb.srv
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/interaction/svn/!svn/ver/1046/trunk/ros-pkg/sandbox/oit_models/srv/LookupProb.srv
+END
+GMMClassify.srv
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/interaction/svn/!svn/ver/1039/trunk/ros-pkg/sandbox/oit_models/srv/GMMClassify.srv
+END

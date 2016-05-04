@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/interaction/svn/!svn/ver/1151/trunk/ros-pkg/sandbox/oit_models/src
+END
+gmm.cc
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/interaction/svn/!svn/ver/1151/trunk/ros-pkg/sandbox/oit_models/src/gmm.cc
+END
+follow.cc
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/interaction/svn/!svn/ver/1059/trunk/ros-pkg/sandbox/oit_models/src/follow.cc
+END
+gmm.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/interaction/svn/!svn/ver/1145/trunk/ros-pkg/sandbox/oit_models/src/gmm.h
+END
+gmm_yaml.cc
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/interaction/svn/!svn/ver/1145/trunk/ros-pkg/sandbox/oit_models/src/gmm_yaml.cc
+END
+gmm_srv.cc
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/interaction/svn/!svn/ver/1146/trunk/ros-pkg/sandbox/oit_models/src/gmm_srv.cc
+END
+test_oit.cc
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/interaction/svn/!svn/ver/1145/trunk/ros-pkg/sandbox/oit_models/src/test_oit.cc
+END
+test_gmm.cc
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/interaction/svn/!svn/ver/1145/trunk/ros-pkg/sandbox/oit_models/src/test_gmm.cc
+END

@@ -1,0 +1,50 @@
+% import data
+
+% for each file in good.files
+fileID = fopen('moves.files');
+i = 0;
+C = [];
+tline = fgetl(fileID);
+while 1
+	i = i+1;
+	tline = fgetl(fileID);
+	if ~ischar(tline), break, end
+	if size(tline) ~= [0 0] 
+		%import data and add to list
+		fid = fopen(tline);
+		cells = textscan(fid,'%f%f%f%f%f%f%f%f%f%f%f%f','Delimiter',',');
+        nC = cell2mat(cells(:,1:12));
+        [numlines q] = size(nC);
+        filenum = [repmat(i,numlines,1)];
+        nC = [filenum nC];
+        C = [C ; nC];
+    end
+end
+fclose(fileID);
+
+[n1 q] = size(C);
+
+ids = {'filename','time','rx','ry','rt','cx','cy','ct','gx','gy','rd','cd','rc'};
+usedcols = [2 11 12 13];
+newcols = [2 11 12 13];
+numfiles = max(unique(C(:,1)));
+normtimes = [];
+normdists = [];
+normintdists = [];
+for i=1:numfiles
+    maxtime = max(C(C(:,1)==i,2));
+    normtimes_t = C(C(:,1)==i,2) ./ maxtime;
+    normtimes = [normtimes ; normtimes_t];
+    
+    maxdist = max(C(C(:,1)==i,11));
+    normdists_t = [C(C(:,1)==i,11) ./ maxdist C(C(:,1)==i,12) ./ maxdist];
+    normdists = [normdists; normdists_t];
+    
+    maxintdist = max(C(C(:,1)==i,13));
+    normintdists_t = [C(C(:,1)==i,13)];
+    %normintdists_t = [C(C(:,1)==i,13) ./ maxintdist];
+    normintdists = [normintdists; normintdists_t];
+    
+end
+
+newData = [normtimes normdists normintdists];
