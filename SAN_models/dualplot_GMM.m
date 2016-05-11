@@ -11,7 +11,7 @@ xxinapp = 1;
 optionsapp = statset('Display','iter','MaxIter',1000);
 optionsinapp = statset('Display','iter','MaxIter',1000);
 
-labels = {'Time' 'Per1 and Hallway left (cm)' 'Per1 and Hallway right (cm)' 'Per1 and robot (cm)' 'Per2 and Hallway left (cm)' 'Per2 and Hallway right (cm)' 'Per2 and robot (cm)' 'Per1 and Per2 distance (cm)' 'inter person distance' 'p1hl - p2hl'};
+labels = {'Time' 'Per1 and Hallway right (cm)' 'Per1 and robot (cm)' 'Per2 and Hallway right (cm)' 'Per2 and robot (cm)' 'Per1 and Per2 distance (cm)' 'p1hl - p2hl'};
 
 colors = [ [0 0 0] ; [0.8 0 0] ; [0 0.8 0] ; [0 0 0.8] ; 
 					 [0.8 0.8 0] ; [0.8 0 0.8] ; [0 0.8 0.8] ; [0.4 0.4 0.4] ];

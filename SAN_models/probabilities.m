@@ -1,4 +1,4 @@
-function [] = probabilities( appobject, inappobject, numberOfClusters)
+function [] = probabilities( appobject, inappobject, numberOfClusters, nf, selcols)
 %Function to calculate probabilities of a dataset in a model
 
 
@@ -11,8 +11,10 @@ while ischar(tline)
     if count >= 1
         disp(tline)
         Dataset = load(tline);
+        Dataset(:, 9) = Dataset(:, 2)-Dataset(:, 5);
         %normalize time
         Dataset(:, 1) = Dataset(:, 1)/max(Dataset(:, 1));
+        Dataset = Dataset(:, selcols);
         l1 = length(Dataset);
         %mahalDist1 = zeros(l1, 8, 2);
         aaprob1 = zeros(l1, 1);
@@ -27,8 +29,9 @@ while ischar(tline)
                 w = Dataset(index, :);
                 u = appobject.mu(k, :);
                 sigma = appobject.Sigma(:,:,k);
-                delta = sqrt((w-u)*(inv(sigma))*(w-u)')/2;
-                sum = sum + ( exp(-delta/2) / (sqrt(2*pi*8)*det(inv(sigma)) ));
+                %[U,S,V] = svd(sigma);
+                delta = ((w-u)*(inv(sigma))*(w-u)')/2;
+                sum = sum + ( exp(-delta) / (power(2*pi,nf/2)*sqrt(det(sigma)) ));
             end
             aaprob1(index) = sum;
         end
@@ -42,9 +45,7 @@ while ischar(tline)
 end
 
 fclose(fid);
-figure;
-histogram(aaprob)
-title('App data in App model')
+
 
 
 %inapp->app
@@ -56,8 +57,10 @@ while ischar(tline)
     if count >= 1
         disp(tline)
         Dataset = load(tline);
+        Dataset(:, 9) = Dataset(:, 2)-Dataset(:, 5);
         %normalize time
         Dataset(:, 1) = Dataset(:, 1)/max(Dataset(:, 1));
+        Dataset = Dataset(:, selcols);
         l1 = length(Dataset);
         %mahalDist1 = zeros(l1, 8, 2);
         iaprob1 = zeros(l1, 1);
@@ -72,8 +75,11 @@ while ischar(tline)
                 w = Dataset(index, :);
                 u = appobject.mu(k, :);
                 sigma = appobject.Sigma(:,:,k);
-                delta = sqrt((w-u)*(inv(sigma))*(w-u)')/2;
-                sum = sum + ( exp(-delta/2) / (sqrt(2*pi*8)*det(inv(sigma)) ));
+                %[U,S,V] = svd(sigma);
+                delta = ((w-u)*(inv(sigma))*(w-u)')/2;
+                sum = sum + ( exp(-delta) / (power(2*pi,nf/2)*sqrt(det(sigma)) ));
+                %delta = sqrt((w-u)*(inv(sigma))*(w-u)')/2;
+                %sum = sum + ( exp(-delta/2) / (sqrt(2*pi*8)*det(inv(sigma)) ));
             end
             iaprob1(index) = sum;
         end
@@ -88,9 +94,7 @@ end
 
 fclose(fid);
     
-figure;
-histogram(iaprob)
-title('Inapp data in App model')
+
 
 %app->inapp
 fid = fopen('app.files');
@@ -101,8 +105,10 @@ while ischar(tline)
     if count >= 1
         disp(tline)
         Dataset = load(tline);
+        Dataset(:, 9) = Dataset(:, 2)-Dataset(:, 5);
         %normalize time
         Dataset(:, 1) = Dataset(:, 1)/max(Dataset(:, 1));
+        Dataset = Dataset(:, selcols);
         l1 = length(Dataset);
         %mahalDist1 = zeros(l1, 8, 2);
         aiprob1 = zeros(l1, 1);
@@ -117,8 +123,11 @@ while ischar(tline)
                 w = Dataset(index, :);
                 u = inappobject.mu(k, :);
                 sigma = inappobject.Sigma(:,:,k);
-                delta = sqrt((w-u)*(inv(sigma))*(w-u)')/2;
-                sum = sum + ( exp(-delta/2) / (sqrt(2*pi*8)*det(inv(sigma)) ));
+                %[U,S,V] = svd(sigma);
+                delta = ((w-u)*(inv(sigma))*(w-u)')/2;
+                sum = sum + ( exp(-delta) / (power(2*pi,nf/2)*sqrt(det(sigma)) ));
+                %delta = sqrt((w-u)*(inv(sigma))*(w-u)')/2;
+                %sum = sum + ( exp(-delta/2) / (sqrt(2*pi*8)*det(inv(sigma)) ));
             end
             aiprob1(index) = sum;
         end
@@ -133,9 +142,7 @@ end
 
 fclose(fid);
 
-figure;
-histogram(aiprob)
-title('App data in Inapp model')
+
 
 %inapp->inapp
 fid = fopen('inapp.files');
@@ -146,8 +153,10 @@ while ischar(tline)
     if count >= 1
         disp(tline)
         Dataset = load(tline);
+        Dataset(:, 9) = Dataset(:, 2)-Dataset(:, 5);
         %normalize time
         Dataset(:, 1) = Dataset(:, 1)/max(Dataset(:, 1));
+        Dataset = Dataset(:, selcols);
         l1 = length(Dataset);
         %mahalDist1 = zeros(l1, 8, 2);
         iiprob1 = zeros(l1, 1);
@@ -162,8 +171,11 @@ while ischar(tline)
                 w = Dataset(index, :);
                 u = inappobject.mu(k, :);
                 sigma = inappobject.Sigma(:,:,k);
-                delta = sqrt((w-u)*(inv(sigma))*(w-u)')/2;
-                sum = sum + ( exp(-delta/2) / (sqrt(2*pi*8)*det(inv(sigma)) ));
+                %[U,S,V] = svd(sigma);
+                delta = ((w-u)*(inv(sigma))*(w-u)')/2;
+                sum = sum + ( exp(-delta) / (power(2*pi,nf/2)*sqrt(det(sigma)) ));
+                %delta = sqrt((w-u)*(inv(sigma))*(w-u)')/2;
+                %sum = sum + ( exp(-delta/2) / (sqrt(2*pi*8)*det(inv(sigma)) ));
             end
             iiprob1(index) = sum;
         end
@@ -177,10 +189,23 @@ while ischar(tline)
 end
 
 fclose(fid);
-
+%BW = 0.000002
 figure;
-histogram(iiprob)
-title('Inapp data in Inapp model')
+%hold on
+histogram(aaprob);
+title('app -> app')
+%hold on 
+figure;
+histogram(iaprob);
+title('inapp -> app')
+%hold on 
+figure;
+histogram(aiprob);
+title('app -> inapp')
+%hold on 
+figure;
+histogram(iiprob);
+title('inapp -> inapp')
 
 
 end

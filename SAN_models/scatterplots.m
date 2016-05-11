@@ -32,9 +32,9 @@ scatter(appData(:,1), appData(:,8), 'b')
 xlabel('Normalized Time'); ylabel('Per1-Per2 (cm)');
 
 %figure;
-%subplot(3,3,6);
-%scatter(newData(:,1), newData(:,9))
-%xlabel('Normalized Time'); ylabel('Per1 and hallway left - Per2 and hallway left(cm)');
+ax8 = subplot(3,3,6);
+scatter(appData(:,1), appData(:,9), 'b')
+xlabel('Normalized Time'); ylabel('Per1 and hallway left - Per2 and hallway left(cm)');
 
 hold(ax1, 'on')
 scatter(ax1, inappData(:,1), inappData(:,2), 'r')
@@ -67,7 +67,7 @@ scatter(ax7, inappData(:,1), inappData(:,8), 'r')
 xlabel('Normalized Time'); ylabel('Per1-Per2 (cm)');
 
 %figure;
-%subplot(3,3,6);
-%scatter(newData(:,1), newData(:,9))
-%xlabel('Normalized Time'); ylabel('Per1 and hallway left - Per2 and hallway left(cm)');
+hold(ax8, 'on')
+scatter(inappData(:,1), inappData(:,9), 'r')
+xlabel('Normalized Time'); ylabel('Per1 and hallway left - Per2 and hallway left(cm)');
 

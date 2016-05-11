@@ -7,12 +7,13 @@ for k = 1:numberOfClusters
     disp('K Value');disp(k)
     u = appobject.mu(k, :);
     sigma = appobject.Sigma(:,:,k);
-    d = det(inv(sigma));
+    %[U,S,V] = svd(sigma);
+    d = sqrt(det(sigma));
     disp('App model means')
     disp(u)
     disp('App model Sigma')
     disp(sigma)
-    disp('App model Determinant')
+    disp('App model Denominator')
     disp(d)
 end
 
@@ -22,12 +23,13 @@ for k = 1:numberOfClusters
     disp('K Value');disp(k)
     u = inappobject.mu(k, :);
     sigma = inappobject.Sigma(:,:,k);
-    d = det(inv(sigma));
+    %[U,S,V] = svd(sigma);
+    d = sqrt(det(sigma));
     disp('Inapp model means')
     disp(u)
     disp('Inapp model Sigma')
     disp(sigma)
-    disp('Inapp model Determinant')
+    disp('Inapp model Denominator')
     disp(d)
 end
 

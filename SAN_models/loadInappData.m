@@ -77,6 +77,9 @@ for i=1:numinappfiles
     
 end
 
-inappData = [inappnormtimes inappnormdists inappnormintdists inappnormintdists5 inappnormintdists6 inappnormintdists7 inappnormintdists8 inappnormintdists9];
+inappData = [inappnormtimes inappnormdists inappnormintdists inappnormintdists5 inappnormintdists6 inappnormintdists7 inappnormintdists8 inappnormintdists9 inappnormdists-inappnormintdists6];
+%inappData = [inappnormtimes inappnormintdists inappnormintdists5 inappnormintdists7 inappnormintdists8 inappnormintdists9 inappnormdists-inappnormintdists6];
+
+
 %newData(:, 9) = newData(:, 2) - newData(:, 5);
 %figure;

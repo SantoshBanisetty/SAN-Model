@@ -77,7 +77,8 @@ for i=1:numappfiles
     
 end
 
-appData = [appnormtimes appnormdists appnormintdists appnormintdists5 appnormintdists6 appnormintdists7 appnormintdists8 appnormintdists9];
+appData = [appnormtimes appnormdists appnormintdists appnormintdists5 appnormintdists6 appnormintdists7 appnormintdists8 appnormintdists9 appnormdists-appnormintdists6];
+%appData = [appnormtimes appnormintdists appnormintdists5 appnormintdists7 appnormintdists8 appnormintdists9 appnormdists-appnormintdists6];
 %newData(:, 9) = newData(:, 2) - newData(:, 5);
 %figure;
 
