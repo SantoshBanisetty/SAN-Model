@@ -36,6 +36,7 @@ while ischar(tline)
             aaprob1(index) = sum;
         end
         aaprob = vertcat(aaprob, aaprob1);
+        
         count = count + 1;
     elseif count == 0
         count = count + 1;
@@ -43,7 +44,7 @@ while ischar(tline)
         
     tline = fgetl(fid);
 end
-
+length(aaprob)
 fclose(fid);
 
 
@@ -84,6 +85,7 @@ while ischar(tline)
             iaprob1(index) = sum;
         end
         iaprob = vertcat(iaprob, iaprob1);
+        
         count = count + 1;
     elseif count == 0
         count = count + 1;
@@ -91,11 +93,11 @@ while ischar(tline)
         
     tline = fgetl(fid);
 end
-
+length(iaprob)
 fclose(fid);
     
 
-
+%{
 %app->inapp
 fid = fopen('app.files');
 count = 0;
@@ -141,9 +143,9 @@ while ischar(tline)
 end
 
 fclose(fid);
+%}
 
-
-
+%{
 %inapp->inapp
 fid = fopen('inapp.files');
 count = 0;
@@ -189,24 +191,28 @@ while ischar(tline)
 end
 
 fclose(fid);
-%BW = 0.000002
+%}
+BW = 0.000001;
+
 figure;
-%hold on
-histogram(aaprob);
-title('app -> app')
+histogram(iaprob, 'BinWidth', BW, 'BinLimits', [0, 0.00001]);
+%legend('inapp data in app model')
+hold on
+%figure;
+histogram(aaprob, 'BinWidth', BW, 'BinLimits', [0, 0.00001]);
+legend('inapp data in app model', 'app data in app model')
 %hold on 
-figure;
-histogram(iaprob);
-title('inapp -> app')
+title('Histogram of probabilities')
+%{
 %hold on 
 figure;
 histogram(aiprob);
-title('app -> inapp')
+title('app data in inapp model')
 %hold on 
 figure;
 histogram(iiprob);
-title('inapp -> inapp')
-
+title('inapp data in inapp model')
+%}
 
 end
 

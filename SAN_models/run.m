@@ -1,6 +1,6 @@
-selectCols = [1 3 4 6 7 8 9];
+selectCols = [1 8 9];
 numFeatures = length(selectCols);
-clusters = 2;
+clusters = 3;
 loadAppData;
 loadInappData;
 scatterplots;
