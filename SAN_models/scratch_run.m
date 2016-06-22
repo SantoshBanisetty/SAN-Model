@@ -6,5 +6,6 @@ clusters = 3;
 loadAppData;
 loadInappData;
 scatterplots;
-%[appobj, inappobj] = new_GMM(appData(:, selectCols), inappData(:, selectCols), clusters, selectCols, labels);
+[appobj, inappobj] = new_GMM(appData(:, selectCols), inappData(:, selectCols), clusters, selectCols, labels);
 %new_probabilities (appobj, inappobj, clusters, numFeatures, selectCols);
+gmm_pdf(appobj, inappobj, selectCols);
