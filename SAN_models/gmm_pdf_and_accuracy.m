@@ -1,4 +1,4 @@
-function [ ] = gmm_pdf_and_accuracy( appobject, inappobject, selCols )
+function [ ] = gmm_pdf_and_accuracy( appobject, inappobject, selCols, threshold )
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
 appDataset = csvread('appdata/Dataset10.txt');

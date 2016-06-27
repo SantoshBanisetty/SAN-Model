@@ -8,4 +8,5 @@ loadInappData;
 scatterplots;
 [appobj, inappobj] = new_GMM(appData(:, selectCols), inappData(:, selectCols), clusters, selectCols, labels);
 %new_probabilities (appobj, inappobj, clusters, numFeatures, selectCols);
-gmm_pdf_and_accuracy(appobj, inappobj, selectCols);
+threshold = classification_threshold (appobj, inappobj, selectCols);
+gmm_pdf_and_accuracy(appobj, inappobj, selectCols, threshold);
