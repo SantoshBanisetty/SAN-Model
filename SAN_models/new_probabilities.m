@@ -3,7 +3,7 @@ function [] = new_probabilities( appobject, inappobject, numberOfClusters, nf, s
 
 
 %app->app probability
-appfid = fopen('app.files');
+fid = fopen('app.files');
 count = 0;
 aaprob = 0;
 tline = fgetl(fid);

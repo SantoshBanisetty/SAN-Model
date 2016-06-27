@@ -8,4 +8,4 @@ loadInappData;
 scatterplots;
 [appobj, inappobj] = new_GMM(appData(:, selectCols), inappData(:, selectCols), clusters, selectCols, labels);
 %new_probabilities (appobj, inappobj, clusters, numFeatures, selectCols);
-gmm_pdf(appobj, inappobj, selectCols);
+gmm_pdf_and_accuracy(appobj, inappobj, selectCols);
