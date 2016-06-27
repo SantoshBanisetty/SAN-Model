@@ -27,7 +27,7 @@ end
 finalData = finalData (2:end, :); % correction by deleting the first row
 
 pdfTh = pdf(appobject, finalData);
-threshold = mean(pdfTh)/2;
+threshold = mean(pdfTh)/10; %trail and error 
 
 
 end

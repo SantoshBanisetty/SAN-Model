@@ -39,10 +39,26 @@ xlabel ('Number')
 ylabel('Probability')
 legend('app data in app model', 'app data in inapp model', 'inapp data in app model', 'inapp data in inappmodel')
 
-%Accuracy calculations
+%Accuracy calculations, used number of non zeros to calculate accuracy. 
+%if less then threshold, inapp and greater than threshold, app 
 applen = length (appDataset)
 inapplen = length (inappDataset)
-for i = 1:applen
-    pdf(appobject, appDataset(i, :))
-end
+
+temp_app_app = pdf(appobject, appDataset);
+temp_app_app(temp_app_app < threshold) = 0;
+temp_app_app(temp_app_app >= threshold) = 1;
+aapositive = nnz(temp_app_app)
+
+temp_inapp_app = pdf(appobject, inappDataset);
+temp_inapp_app(temp_inapp_app < threshold) = 0;
+temp_inapp_app(temp_inapp_app >= threshold) = 1;
+iapositive = inapplen - nnz(temp_inapp_app)
+
+aa_accuracy = (aapositive / applen)*100
+ia_accuracy = (iapositive / inapplen)*100
+
+accuracy = mean([aa_accuracy, ia_accuracy])
+disp('overall accuracy of the model is: ');
+disp(accuracy);
+
 
